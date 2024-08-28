@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 61
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24368a37222c39f4e93e310a6011e2fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentView: 
+  PreviousView: TableOfContent
+  DomainReloadOccured: 1
+  IsOpen: 1
+  AreTestsRunning: 0
+  CurrentTutorial: {fileID: 11400000, guid: c122a1a2efeb58349b8154e42481067b, type: 2}
+  PlayModeChanging: 1
+  ActiveScenesBeforeTutorialStarted:
+  - Active: 1
+    AssetPath: Assets/FPS/Scenes/MainScene.unity
+    WasLoaded: 1
+  SceneViewStateBeforeTutorialStarted:
+    In2DMode: 0
+    Orthographic: 0
+    Size: 10
+    Point: {x: -5, y: 26.339746, z: -12}
+    Direction: {x: 0.5, y: 0, z: 0, w: 0.8660254}
