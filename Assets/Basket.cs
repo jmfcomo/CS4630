@@ -1,16 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Basket : MonoBehaviour
 {
     public ScoreCounter scoreCounter;
+    public HighScore hs;
 
     // Start is called before the first frame update
     void Start()
     {
         GameObject scoreGO = GameObject.Find("ScoreCounter");
         scoreCounter = scoreGO.GetComponent<ScoreCounter>();
+        GameObject highGO = GameObject.Find("HighScore");
+        hs = highGO.GetComponent<HighScore>();
     }
 
     // Update is called once per frame
@@ -34,7 +38,7 @@ public class Basket : MonoBehaviour
         {
             Destroy(collidedWith);
             scoreCounter.score += 100;
-            HighScore.TRY_SET_HIGH_SCORE(scoreCounter.score);
+            hs.TRY_SET_HIGH_SCORE(scoreCounter.score);
         }
     }
 }

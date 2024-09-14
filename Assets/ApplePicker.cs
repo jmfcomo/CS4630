@@ -11,9 +11,10 @@ public class ApplePicker : MonoBehaviour
     public float basketBottomY = -14f;
     public float basketSpacingY = 2f;
     public List<GameObject> basketList;
+    public GameOverCanvas goCanvas;
 
     void Start()
-    { 
+    {
         basketList = new List<GameObject>();
         for (int i = 0; i < numBaskets; i++)
         {
@@ -23,24 +24,33 @@ public class ApplePicker : MonoBehaviour
             tBasketGO.transform.position = pos;
             basketList.Add(tBasketGO);
         }
+
+        GameObject canvasGO = GameObject.Find("GameOverCanvas");
+        if (canvasGO != null)
+        {
+            goCanvas = canvasGO.GetComponent<GameOverCanvas>();
+        }
     }
 
     public void AppleMissed()
     {
-        GameObject[] appleArray = GameObject.FindGameObjectsWithTag("Apple");
-        foreach ( GameObject tempGO in appleArray)
+        if (basketList.Count > 0)
         {
-            Destroy(tempGO);
-        }
+            GameObject[] appleArray = GameObject.FindGameObjectsWithTag("Apple");
+            foreach (GameObject tempGO in appleArray)
+            {
+                Destroy(tempGO);
+            }
 
-        int basketIndex = basketList.Count - 1;
-        GameObject basketGO = basketList[basketIndex];
-        basketList.RemoveAt(basketIndex);
-        Destroy(basketGO);
+            int basketIndex = basketList.Count - 1;
+            GameObject basketGO = basketList[basketIndex];
+            basketList.RemoveAt(basketIndex);
+            Destroy(basketGO);
+        }
 
         if (basketList.Count == 0)
         {
-            SceneManager.LoadScene("SampleScene");
+            goCanvas.GameOver();
         }
     }
 }

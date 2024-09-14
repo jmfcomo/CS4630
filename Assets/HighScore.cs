@@ -9,6 +9,7 @@ public class HighScore : MonoBehaviour
     static private int _SCORE = 1000;
 
     private Text txtCom;
+    
 
     private void Awake()
     {
@@ -35,10 +36,12 @@ public class HighScore : MonoBehaviour
         }
     }
 
-    static public void TRY_SET_HIGH_SCORE(int scoreToTry)
+    public bool highScoreChanged = false;
+    public void TRY_SET_HIGH_SCORE(int scoreToTry)
     {
         if (scoreToTry <= SCORE) return;
         SCORE = scoreToTry;
+        NewHighScore();
     }
 
     [Tooltip("Check this box to reset the HighScore in PlayerPrefs ")]
@@ -52,5 +55,20 @@ public class HighScore : MonoBehaviour
             PlayerPrefs.SetInt("HighScore", 1000);
             Debug.LogWarning("PlayerPrefs HighScore reset to 1,000.");
         }
+    }
+
+    private void NewHighScore()
+    {
+        highScoreChanged = true;
+    }
+
+    public void ResetHighScore()
+    {
+        highScoreChanged = false;
+    }
+
+    public bool GetHighScoreChanged()
+    {
+        return highScoreChanged;
     }
 }

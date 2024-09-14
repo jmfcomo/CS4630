@@ -20,6 +20,9 @@ public class AppleTree : MonoBehaviour
     // Seconds between Apples instantiations
     public float appleDropDelay = 1f;
 
+    public int level = 1;
+    private int levelFrames = 0;
+
     void Start()
     {
         // Start dropping apples
@@ -34,6 +37,18 @@ public class AppleTree : MonoBehaviour
     }
     void Update()
     {
+        // Leveling
+        levelFrames++;
+        if (levelFrames == 1000)
+        {
+            levelFrames = 0;
+            level++;
+            speed *= 1.1f;
+            appleDropDelay *= 0.9f;
+            changeDirChance *= 1.1f;
+            Debug.Log("Level: " + level);
+        }
+
         // Basic Movement
         Vector3 pos = transform.position;
         pos.x += speed * Time.deltaTime;
@@ -57,4 +72,7 @@ public class AppleTree : MonoBehaviour
             speed *= -1;
         }
     }
+
+    public int GetLevel()
+        { return level; }
 }
