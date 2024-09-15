@@ -19,6 +19,6 @@ public class ScoreEnd : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        scoreText.text = "You scored " + scoreCounter.getScore() + "!";
     }
 }

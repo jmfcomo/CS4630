@@ -7,6 +7,8 @@ public class AppleTree : MonoBehaviour
     [Header("Inscribed")]                                                  // a
     // Prefab for instantiating apples
     public GameObject applePrefab;
+    public GameObject goldApplePrefab;
+    public GameObject poisonApplePrefab;
 
     // Speed at which the AppleTree moves
     public float speed = 1f;
@@ -20,6 +22,10 @@ public class AppleTree : MonoBehaviour
     // Seconds between Apples instantiations
     public float appleDropDelay = 1f;
 
+    public float goldenAppleChance = 0.05f;
+    // real chance is lower because this runs after gold apples get picked
+    public float poisonAppleChance = 0.05f;
+
     public int level = 1;
     private int levelFrames = 0;
 
@@ -31,7 +37,19 @@ public class AppleTree : MonoBehaviour
 
     void DropApple()
     {
-        GameObject apple = Instantiate<GameObject>(applePrefab);
+        GameObject apple;
+        if (Random.value < goldenAppleChance)
+        {
+            apple = Instantiate<GameObject>(goldApplePrefab);
+        }
+        else if (Random.value < poisonAppleChance)
+        {
+            apple = Instantiate<GameObject>(poisonApplePrefab);
+        }
+        else
+        {
+            apple = Instantiate<GameObject>(applePrefab);
+        }
         apple.transform.position = transform.position;
         Invoke("DropApple", appleDropDelay);
     }
@@ -46,7 +64,8 @@ public class AppleTree : MonoBehaviour
             speed *= 1.1f;
             appleDropDelay *= 0.9f;
             changeDirChance *= 1.1f;
-            Debug.Log("Level: " + level);
+            poisonAppleChance *= 1.1f;
+            goldenAppleChance *= 1.1f;
         }
 
         // Basic Movement

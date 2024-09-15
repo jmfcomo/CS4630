@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class ApplePicker : MonoBehaviour
 {
@@ -37,7 +38,9 @@ public class ApplePicker : MonoBehaviour
         if (basketList.Count > 0)
         {
             GameObject[] appleArray = GameObject.FindGameObjectsWithTag("Apple");
-            foreach (GameObject tempGO in appleArray)
+            GameObject[] goldAppleArray =  GameObject.FindGameObjectsWithTag("GoldApple");
+            GameObject[] applesArray = appleArray.Concat(goldAppleArray).ToArray();
+            foreach (GameObject tempGO in applesArray)
             {
                 Destroy(tempGO);
             }
