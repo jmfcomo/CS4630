@@ -17,6 +17,7 @@ public class MissionDemolition : MonoBehaviour
     [Header("Inscribed")]
     public Text uitLevel;
     public Text uitShots;
+    public Text uitScore;
     public Vector3 castlePos;
     public GameObject[] castles;
 
@@ -24,6 +25,8 @@ public class MissionDemolition : MonoBehaviour
     public int level;
     public int levelMax;
     public int shotsTaken;
+    public int shotsRemaining;
+    public int score;
     public GameObject castle;
     public GameMode mode = GameMode.idle;
     public string showing = "Show Slingshot";
@@ -35,6 +38,8 @@ public class MissionDemolition : MonoBehaviour
         level = 0;
         shotsTaken = 0;
         levelMax = castles.Length;
+        score = 0;
+        shotsRemaining = 3;
         StartLevel();
     }
 
@@ -56,13 +61,16 @@ public class MissionDemolition : MonoBehaviour
 
         mode = GameMode.playing;
 
+        shotsRemaining = 3;
+
         FollowCam.SWITCH_VIEW(FollowCam.eView.both);
     }
 
     void UpdateGUI()
     {
         uitLevel.text = "Level: " + (level + 1) + " of " + levelMax;
-        uitShots.text = "Shots Taken: " + shotsTaken;
+        uitShots.text = "Shots Remaining: " + shotsRemaining;
+        uitScore.text = "Score: " + score;
     }
 
     // Update is called once per frame
@@ -74,12 +82,32 @@ public class MissionDemolition : MonoBehaviour
         {
             mode = GameMode.levelEnd;
             FollowCam.SWITCH_VIEW(FollowCam.eView.both);
-            Invoke("NextLevel", 2f);
+            Invoke("NextLevelWin", 2f);
         }
     }
 
-    void NextLevel()
+    void NextLevelWin()
     {
+        NextLevel(true);
+    }
+
+    void NextLevel(bool isWin)
+    {
+        if (isWin) {
+            switch (shotsRemaining)
+            {
+                case 2:
+                    score += 1000;
+                    break;
+                case 1:
+                    score += 500;
+                    break;
+                case 0:
+                    score += 100;
+                    break;
+            }
+        }
+
         level++;
         if (level == levelMax)
         {
@@ -92,10 +120,20 @@ public class MissionDemolition : MonoBehaviour
     static public void SHOT_FIRED()
     {
         S.shotsTaken++;
+        S.shotsRemaining--;
     }
 
     static public GameObject GET_CASTLE()
     {
         return S.castle;
     }
+
+    static public void BALL_SLEEP()
+    {
+        if (S.shotsRemaining == 0)
+        {
+            S.NextLevel(false);
+        }
+    }
+
 }

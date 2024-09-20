@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 7844257891167385234}
   - component: {fileID: 1468165056847412261}
   m_Layer: 0
-  m_Name: Slab
-  m_TagString: Untagged
+  m_Name: Ice_Slab
+  m_TagString: Ice
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1a2a373f548697748aab8d2a2d668349, type: 2}
+  - {fileID: 2100000, guid: 6e827b37b44f0aa458427b7673102ac5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -93,7 +93,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 280252167294680853}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: e1161089dcdd04542a2271b0f50d5a82, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -115,7 +115,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 280252167294680853}
   serializedVersion: 4
-  m_Mass: 4
+  m_Mass: 5
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}

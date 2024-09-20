@@ -59,6 +59,7 @@ public class Projectile : MonoBehaviour
         {
             awake = false;
             rigid.Sleep();
+            MissionDemolition.BALL_SLEEP();
         }
     }
 
@@ -72,6 +73,15 @@ public class Projectile : MonoBehaviour
         foreach (Projectile p in PROJECTILES)
         {
             Destroy(p.gameObject);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        GameObject collidedWith = collision.gameObject;
+        if (collidedWith.CompareTag("Ice"))
+        {
+            Destroy(collidedWith);
         }
     }
 }
