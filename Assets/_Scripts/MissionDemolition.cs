@@ -18,6 +18,7 @@ public class MissionDemolition : MonoBehaviour
     public Text uitLevel;
     public Text uitShots;
     public Text uitScore;
+    public Text uitHighScore;
     public Vector3 castlePos;
     public GameObject[] castles;
 
@@ -27,6 +28,7 @@ public class MissionDemolition : MonoBehaviour
     public int shotsTaken;
     public int shotsRemaining;
     public int score;
+    public int highScore;
     public GameObject castle;
     public GameMode mode = GameMode.idle;
     public string showing = "Show Slingshot";
@@ -40,6 +42,17 @@ public class MissionDemolition : MonoBehaviour
         levelMax = castles.Length;
         score = 0;
         shotsRemaining = 3;
+
+        if (PlayerPrefs.HasKey("HighScore"))
+        {
+            highScore = PlayerPrefs.GetInt("HighScore");
+        }
+        else
+        {
+            PlayerPrefs.SetInt("HighScore", highScore);
+            highScore = 0;
+        }
+
         StartLevel();
     }
 
@@ -71,6 +84,7 @@ public class MissionDemolition : MonoBehaviour
         uitLevel.text = "Level: " + (level + 1) + " of " + levelMax;
         uitShots.text = "Shots Remaining: " + shotsRemaining;
         uitScore.text = "Score: " + score;
+        uitHighScore.text = "High Score: " + highScore;
     }
 
     // Update is called once per frame
@@ -111,8 +125,14 @@ public class MissionDemolition : MonoBehaviour
         level++;
         if (level == levelMax)
         {
+            if (score > highScore)
+            {
+                PlayerPrefs.SetInt("HighScore", score);
+                highScore = score;
+            }
             level = 0;
             shotsTaken = 0;
+            score = 0;
         }
         StartLevel();
     }
@@ -134,6 +154,21 @@ public class MissionDemolition : MonoBehaviour
         {
             S.NextLevel(false);
         }
+    }
+
+    static public void HIT_WOOD()
+    {
+        S.score += 10;
+    }
+
+    static public void HIT_STONE()
+    {
+        S.score += 20;
+    }
+
+    static public void HIT_ICE()
+    {
+        S.score += 30;
     }
 
 }

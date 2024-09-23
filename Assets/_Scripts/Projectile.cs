@@ -81,7 +81,16 @@ public class Projectile : MonoBehaviour
         GameObject collidedWith = collision.gameObject;
         if (collidedWith.CompareTag("Ice"))
         {
+            MissionDemolition.HIT_ICE();
             Destroy(collidedWith);
+        }
+        if (collidedWith.CompareTag("Wood"))
+        {
+            MissionDemolition.HIT_WOOD();
+        }
+        if (collidedWith.CompareTag("Stone"))
+        {
+            MissionDemolition.HIT_STONE();
         }
     }
 }
