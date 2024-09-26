@@ -557,8 +557,8 @@ Transform:
   m_GameObject: {fileID: 515791934}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 50, y: -5, z: -17.488329}
-  m_LocalScale: {x: 15, y: 10, z: 1}
+  m_LocalPosition: {x: 50, y: -5, z: 300}
+  m_LocalScale: {x: 15, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1204516676}
@@ -576,8 +576,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 963194225}
-  parallaxEffect: 0.9
-  parallaxEffecty: 2
+  parallaxEffect: 0.5
+  parallaxEffecty: 0.1
 --- !u!212 &515791937
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1824,6 +1824,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1552667248}
   - component: {fileID: 1552667247}
+  - component: {fileID: 1552667249}
   m_Layer: 0
   m_Name: CloudCover
   m_TagString: Untagged
@@ -1868,6 +1869,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1552667249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1552667246}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02706005a93723a4b999698062dcefb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 963194225}
+  parallaxEffect: 0.2
+  parallaxEffecty: 0.1
 --- !u!1 &1561443025
 GameObject:
   m_ObjectHideFlags: 0
@@ -2386,8 +2402,8 @@ Transform:
   m_GameObject: {fileID: 1839079059}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -28.721752, y: -5, z: -17.488329}
-  m_LocalScale: {x: 15, y: 10, z: 1}
+  m_LocalPosition: {x: -28.721752, y: 0, z: 500}
+  m_LocalScale: {x: 20, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1204516676}
@@ -2405,8 +2421,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 963194225}
-  parallaxEffect: 0.95
-  parallaxEffecty: 2
+  parallaxEffect: 1
+  parallaxEffecty: 0.1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
