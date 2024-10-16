@@ -19,8 +19,17 @@ public class BarrelControl : MonoBehaviour
         mousePos2D.z = -Camera.main.transform.position.z;
         Vector3 mousePos3D = Camera.main.ScreenToWorldPoint(mousePos2D);
 
+        Vector3 direction = mousePos3D - transform.position;
+        angle = (Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg) - 90;
 
-        angle += .1f;
+        if (angle > 85 || angle < -180)
+        {
+            angle = 85;
+        }
+        else if (angle < -85 && angle > -180)
+        {
+            angle = -85;
+        }
         transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 }
