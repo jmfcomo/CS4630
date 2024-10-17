@@ -20,15 +20,24 @@ public class CanonLaunch : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.S))
         {
-            LaunchProjectile(1);
+            if (GameControl.SHOOT_PROJECTILE(1))
+            {
+                LaunchProjectile(1);
+            }
         }
         else if (Input.GetKeyDown(KeyCode.D))
         {
-            LaunchProjectile(2);
+            if (GameControl.SHOOT_PROJECTILE(2))
+            {
+                LaunchProjectile(2);
+            }
         }
         else if (Input.GetKeyDown(KeyCode.F))
         {
-            LaunchProjectile(3);
+            if (GameControl.SHOOT_PROJECTILE(3))
+            {
+                LaunchProjectile(3);
+            }
         }
     }
 }

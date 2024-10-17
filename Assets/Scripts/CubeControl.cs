@@ -6,16 +6,21 @@ using TMPro;
 public class CubeControl : MonoBehaviour
 {
     public float dropSpeed = 0.01f;
-    public int maxNumber = 6;
+    public int maxNumber;
 
     public TextMeshPro label;
 
     private int value;
+    private int startingValue;
+    private int[]
+        maxNumberByLevel = new int[] { 6, 9, 12, 20 };
 
     // Start is called before the first frame update
     void Start()
     {
-        value = Random.Range(1, maxNumber + 1);  
+        maxNumber = maxNumberByLevel[GameControl.GET_LEVEL() - 1];
+        value = Random.Range(1, maxNumber + 1);
+        startingValue = value;
     }
 
     private void FixedUpdate()
@@ -29,6 +34,7 @@ public class CubeControl : MonoBehaviour
         if (pos.y < 0.5)
         {   
             Destroy(gameObject);
+            GameControl.CRATE_LOST();
         }
     }
 
@@ -38,13 +44,13 @@ public class CubeControl : MonoBehaviour
         if (this.value == 0)
         {
             Destroy(gameObject);
-            // get some points
+            GameControl.CHANGE_SCORE(startingValue);
         }
 
         if (this.value < 0)
         {
             Destroy(gameObject);
-            // but something's wrong
+            GameControl.CHANGE_SCORE(-startingValue);
         }
     }
 }

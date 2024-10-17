@@ -34,7 +34,6 @@ public class ProjectileControl : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        print("collision!");
         GameObject collided = other.gameObject;
         CubeControl collidedScript = collided.GetComponent<CubeControl>();
         if (collidedScript != null)
