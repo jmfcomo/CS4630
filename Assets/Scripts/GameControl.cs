@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameControl : MonoBehaviour
 {
@@ -25,6 +26,7 @@ public class GameControl : MonoBehaviour
     private int[] cratesByLevel;
     private int[] dropWaitByLevel;
     private int cratesLeft;
+    private int cratesDropped;
     private int cratesHit;
     private int[] ballsRemaining;
     private int[] ballsRemainingByLevel;
@@ -40,6 +42,7 @@ public class GameControl : MonoBehaviour
         level = 1;
         cratesByLevel = new int[] { 15, 20, 30, 60 };
         cratesLeft = cratesByLevel[0];
+        cratesDropped = cratesLeft;
         cratesHit = 0;
         dropWaitByLevel = new int[] { 200, 150, 100, 50 };
         dropWait = dropWaitByLevel[0];
@@ -61,7 +64,7 @@ public class GameControl : MonoBehaviour
 
         // drop cube
         framesSinceDrop++;
-        if (framesSinceDrop > dropWait)
+        if (framesSinceDrop > dropWait && cratesDropped > 0)
         {
             DropCube();
         }
@@ -76,6 +79,12 @@ public class GameControl : MonoBehaviour
         if (cratesLeft == 0)
         {
             ChangeLevel();
+        }
+
+        // timer up
+        if (timeLeft == 0)
+        {
+            EndGame(0);
         }
 
         // UI update
@@ -98,6 +107,7 @@ public class GameControl : MonoBehaviour
         Vector3 pos = new Vector3(xPos, 10, -1);
         cube.transform.position = pos;
         framesSinceDrop = 0;
+        cratesDropped--;
     }
 
     private void ChangeLevel()
@@ -114,7 +124,7 @@ public class GameControl : MonoBehaviour
 
         if (level > 4)
         {
-            //TODO: win condition!
+            EndGame(timeLeft);
         }
         if (level < 1) // can't go below level 1
         {
@@ -125,11 +135,29 @@ public class GameControl : MonoBehaviour
         {
             cratesHit = 0;
             cratesLeft = cratesByLevel[level - 1];
+            cratesDropped = cratesLeft;
             dropWait = dropWaitByLevel[level - 1];
             ballsRemaining[0] = ballsRemainingByLevel[level - 1];
             ballsRemaining[1] = ballsRemainingByLevel[level - 1];
             ballsRemaining[2] = ballsRemainingByLevel[level - 1];
         }
+    }
+
+    private void EndGame(int bonusPoints)
+    {
+        score += bonusPoints;
+        PlayerPrefs.SetInt("Score", score);
+        if (PlayerPrefs.HasKey("HighScore"))
+        {
+            int highScore = PlayerPrefs.GetInt("HighScore");
+            if (score > highScore)
+            {
+                PlayerPrefs.SetInt("HighScore", score);
+            }
+        }
+        PlayerPrefs.SetInt("HighScore", score);
+
+        SceneManager.LoadScene("End");
     }
 
     static public void CHANGE_SCORE(int change)
