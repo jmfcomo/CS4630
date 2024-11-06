@@ -1228,6 +1228,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cded01220429f4944946db34e2828827, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 10
+  fireRate: 0.3
+  health: 10
+  score: 100
+  powerUpDropChance: 1
+  duration: 4
 --- !u!114 &8851346732513008775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1240,8 +1246,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce66f66a1649d194898ec956412cae1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boundsType: 2
-  radius: 2.5
+  boundsType: 1
+  radius: 8
   keepOnScreen: 0
   screenLocs: 0
   camWidth: 0
@@ -1273,4 +1279,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d9108615cec31443841e4645a132912, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
+  health: 0
