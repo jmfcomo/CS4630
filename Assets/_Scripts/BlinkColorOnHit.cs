@@ -4,7 +4,7 @@ using UnityEngine;
 
 [DisallowMultipleComponent]
 
-public class BlickColorOnHit : MonoBehaviour
+public class BlinkColorOnHit : MonoBehaviour
 {
     private static float blinkDuration = 0.1f;
     private static Color blinkColor = Color.red;
@@ -12,6 +12,7 @@ public class BlickColorOnHit : MonoBehaviour
     [Header("Dynamic")]
     public bool showingColor = false;
     public float blinkCompleteTime;
+    public bool ignoreOnCollisionEnter = false;
 
     private Material[] materials;
     private Color[] originalColors;
@@ -34,6 +35,8 @@ public class BlickColorOnHit : MonoBehaviour
 
     private void OnCollisionEnter(Collision coll)
     {
+        if (ignoreOnCollisionEnter) return;
+
         ProjectileHero p = coll.gameObject.GetComponent<ProjectileHero>();
         if (p != null)
         {
@@ -45,7 +48,7 @@ public class BlickColorOnHit : MonoBehaviour
         }
     }
 
-    void SetColors()
+    public void SetColors()
     {
         foreach (Material m in materials)
         {

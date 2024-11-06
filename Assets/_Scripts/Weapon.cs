@@ -92,6 +92,7 @@ public class Weapon : MonoBehaviour
         ProjectileHero p;
         Vector3 vel = Vector3.up * def.velocity;
 
+        print("firing, weapon: " + type);
         switch(type)
         {
             case eWeaponType.blaster:
@@ -117,7 +118,8 @@ public class Weapon : MonoBehaviour
     {
         GameObject go;
         go = Instantiate<GameObject>(def.projectilePrefab, PROJECTILE_ANCHOR);
-        // print("firing" + go);
+        print("projectile anchor is " + PROJECTILE_ANCHOR);
+        print("firing" + go);
         ProjectileHero p = go.GetComponent<ProjectileHero>();
 
         Vector3 pos = shotPointTrans.position;
