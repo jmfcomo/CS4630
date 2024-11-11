@@ -965,6 +965,26 @@ MonoBehaviour:
     damagePerSec: 0
     delayBetweenShots: 0
     velocity: 50
+  - type: 3
+    letter: P
+    powerUpColor: {r: 0.6511756, g: 0.37266642, b: 0.82641506, a: 1}
+    weaponModelPrefab: {fileID: 919132149155446097, guid: 2b917555367b8f64fab39ba6974870f3, type: 3}
+    projectilePrefab: {fileID: 2895478259569522869, guid: e0c0f6f4587a11b4d834f8c4a3a271ee, type: 3}
+    projectileColor: {r: 0.5963027, g: 0.3046279, b: 0.7509433, a: 1}
+    damageOnHit: 1
+    damagePerSec: 0
+    delayBetweenShots: 0.3
+    velocity: 0
+  - type: 5
+    letter: L
+    powerUpColor: {r: 1, g: 0, b: 0.14081192, a: 1}
+    weaponModelPrefab: {fileID: 919132149155446097, guid: 0522e2d6add5631469273543744ebf7f, type: 3}
+    projectilePrefab: {fileID: 713652585871780093, guid: b05979283d876c54ebd1c6cf9167bb84, type: 3}
+    projectileColor: {r: 1, g: 0, b: 0.14117648, a: 1}
+    damageOnHit: 0
+    damagePerSec: 3
+    delayBetweenShots: 0.01
+    velocity: 50
   powerUpFrequency: 01000000010000000200000006000000
 --- !u!114 &963194230
 MonoBehaviour:
@@ -1367,6 +1387,10 @@ PrefabInstance:
     - target: {fileID: 4724524453029993707, guid: 12b922a29b94f9448bec7356da46d278, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7362473137150973276, guid: 12b922a29b94f9448bec7356da46d278, type: 3}
+      propertyPath: _type
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

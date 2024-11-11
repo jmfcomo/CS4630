@@ -39,7 +39,8 @@ public class Hero : MonoBehaviour
         // fireEvent += TempFire;
 
         ClearWeapons();
-        weapons[0].SetType(eWeaponType.blaster);
+        // RESET THIS
+        weapons[0].SetType(eWeaponType.laser);
     }
 
     private void Update()

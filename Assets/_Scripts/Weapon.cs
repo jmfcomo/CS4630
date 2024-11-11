@@ -111,6 +111,20 @@ public class Weapon : MonoBehaviour
                 p.vel = p.transform.rotation * vel;
                 break;
 
+            case eWeaponType.phaser:
+                p = MakeProjectile();
+                p.vel = vel;
+                p = MakeProjectile();
+                Vector3 offset = new Vector3(-5f, 0, 0);
+                p.transform.position += offset;
+                p.vel = vel;
+                break;
+
+            case eWeaponType.laser:
+                // only if no laser exists
+                p = MakeProjectile();
+                break;
+
         }
     }
 
@@ -118,8 +132,7 @@ public class Weapon : MonoBehaviour
     {
         GameObject go;
         go = Instantiate<GameObject>(def.projectilePrefab, PROJECTILE_ANCHOR);
-        print("projectile anchor is " + PROJECTILE_ANCHOR);
-        print("firing" + go);
+
         ProjectileHero p = go.GetComponent<ProjectileHero>();
 
         Vector3 pos = shotPointTrans.position;

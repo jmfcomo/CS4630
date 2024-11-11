@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 [RequireComponent( typeof(BoundsCheck))]
 
@@ -29,10 +30,19 @@ public class ProjectileHero : MonoBehaviour
 
     private void Update()
     {
+
+        Move();
+
         if (bndCheck.LocIs(BoundsCheck.eScreenLocs.offUp))
         {
             Destroy(gameObject);
         }
+    }
+
+    public virtual void Move()
+    {
+        Vector3 tempVel = rigid.velocity;
+        rigid.velocity = tempVel;
     }
 
     public void SetType(eWeaponType eType)
