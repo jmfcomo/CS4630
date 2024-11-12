@@ -125,6 +125,10 @@ public class Weapon : MonoBehaviour
                 p = MakeProjectile();
                 break;
 
+            case eWeaponType.missile:
+                p = MakeProjectile();
+                break;
+
         }
     }
 
