@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Hero : MonoBehaviour
 {
     static public Hero S { get; private set; }
+
+    public Joystick joystick;
+    private Touch touch;
 
     [Header("Inscribed")]
 
@@ -37,8 +39,11 @@ public class Hero : MonoBehaviour
 
     private void Update()
     {
-        float hAxis = Input.GetAxis("Horizontal");
-        float vAxis = Input.GetAxis("Vertical");
+        //float hAxis = Input.GetAxis("Horizontal");
+        //float vAxis = Input.GetAxis("Vertical");
+
+        float hAxis = joystick.Horizontal;
+        float vAxis = joystick.Vertical;
 
         Vector3 pos = transform.position;
         pos.x += hAxis * speed * Time.deltaTime;
@@ -48,6 +53,11 @@ public class Hero : MonoBehaviour
         transform.rotation = Quaternion.Euler(vAxis*pitchMult,hAxis*rollMult,0);
 
         if (Input.GetKeyDown(KeyCode.Space))
+        {
+            TempFire();
+        }
+
+        if (Input.touchCount > 1)
         {
             TempFire();
         }
