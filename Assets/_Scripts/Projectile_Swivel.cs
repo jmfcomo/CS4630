@@ -3,10 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile_Missile : ProjectileHero
+public class Projectile_Swivel : ProjectileHero
 {
     GameObject nearestEnemy;
-    float timeAlive = 0;
 
     private void Start()
     {
@@ -39,24 +38,7 @@ public class Projectile_Missile : ProjectileHero
 
         Vector3 directionToEnemy = (nearestEnemy.transform.position - transform.position).normalized;
         float moveSpeed = 50f;
-        float turnSpeed = 10f;
-        float initialForwardTime = 0.1f;
-
-        timeAlive += Time.deltaTime;
-
-        print(timeAlive);
-        if (timeAlive < initialForwardTime)
-        {
-            print("forwardTime");
-            transform.position += new Vector3(0, 1, 0) * moveSpeed * Time.deltaTime;
-        }
-        else
-        {
-            print("postForwardTime");
-            Quaternion targetRotation = Quaternion.LookRotation(directionToEnemy, transform.forward);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
-            transform.position += transform.forward * moveSpeed * Time.deltaTime;
-        }
+        transform.position += directionToEnemy * moveSpeed * Time.deltaTime;
     }
 
 }

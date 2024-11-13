@@ -9,7 +9,8 @@ using UnityEngine;
         phaser,
         missile,
         laser,
-        shield
+        shield,
+        swivel
     }
 
 [System.Serializable]
@@ -129,6 +130,9 @@ public class Weapon : MonoBehaviour
                 p = MakeProjectile();
                 break;
 
+            case eWeaponType.swivel:
+                p = MakeProjectile();
+                break;
         }
     }
 

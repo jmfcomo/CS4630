@@ -40,7 +40,7 @@ public class Hero : MonoBehaviour
 
         ClearWeapons();
         // RESET THIS
-        weapons[0].SetType(eWeaponType.missile);
+        weapons[0].SetType(eWeaponType.swivel);
     }
 
     private void Update()
