@@ -40,7 +40,7 @@ public class Hero : MonoBehaviour
 
         ClearWeapons();
         // RESET THIS
-        weapons[0].SetType(eWeaponType.swivel);
+        weapons[0].SetType(eWeaponType.laser);
     }
 
     private void Update()
@@ -55,7 +55,7 @@ public class Hero : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(vAxis*pitchMult,hAxis*rollMult,0);
 
-        if (Input.GetAxis("Jump") == 1 && fireEvent != null)
+        if (Input.GetButtonDown("Jump") && fireEvent != null)
         {
             fireEvent();
         }

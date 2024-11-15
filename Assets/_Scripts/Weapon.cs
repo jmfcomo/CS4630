@@ -123,7 +123,7 @@ public class Weapon : MonoBehaviour
 
             case eWeaponType.laser:
                 // only if no laser exists
-                p = MakeProjectile();
+                p = MakeProjectile(this.gameObject);
                 break;
 
             case eWeaponType.missile:
@@ -142,6 +142,25 @@ public class Weapon : MonoBehaviour
         go = Instantiate<GameObject>(def.projectilePrefab, PROJECTILE_ANCHOR);
 
         ProjectileHero p = go.GetComponent<ProjectileHero>();
+
+        Vector3 pos = shotPointTrans.position;
+        pos.z = 0;
+        p.transform.position = pos;
+
+        p.type = type;
+        nextShotTime = Time.time + def.delayBetweenShots;
+        return (p);
+    }
+
+
+    private ProjectileHero MakeProjectile(GameObject weapon)
+    {
+        GameObject go;
+        go = Instantiate<GameObject>(def.projectilePrefab, PROJECTILE_ANCHOR);
+
+        Projectile_Laser p = go.GetComponent<Projectile_Laser>();
+
+        p.weapon = weapon;
 
         Vector3 pos = shotPointTrans.position;
         pos.z = 0;

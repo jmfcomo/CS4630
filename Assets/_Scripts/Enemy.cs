@@ -55,6 +55,7 @@ public class Enemy : MonoBehaviour
         GameObject otherGO = coll.gameObject;
 
         ProjectileHero p = otherGO.GetComponent<ProjectileHero>();
+
         if (p != null)
         {
             if (bndCheck.isOnScreen)
@@ -71,10 +72,33 @@ public class Enemy : MonoBehaviour
                 }
             }
 
-            Destroy(otherGO);
+            if (p != null && p.GetType() != typeof(Projectile_Laser))
+            {
+                Destroy(otherGO);
+            }
         } else
         {
             print("Enemy hit by non-ProjectileHero: " + otherGO.name);
+        }
+    }
+
+    private void OnCollisionStay(Collision coll)
+    {
+        GameObject otherGO = coll.gameObject;
+        ProjectileHero p = otherGO.GetComponent<ProjectileHero>();
+
+        if (p != null && p.GetType() == typeof(Projectile_Laser))
+        {
+            health -= Main.GET_WEAPON_DEFINITION(p.type).damagePerSec * Time.deltaTime;
+            if (health <= 0)
+            {
+                if (!calledShipDestroyed)
+                {
+                    calledShipDestroyed = true;
+                    Main.SHIP_DESTROYED(this);
+                }
+                Destroy(this.gameObject);
+            }
         }
     }
 }
